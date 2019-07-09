@@ -32,18 +32,24 @@
   display: inline-block;
   position: relative;
   width: 20%;
+  top: 0;
+  vertical-align: top;
 }
 
 .category{
   display: inline-block;
   position: relative;
   width: 20%;
+  vertical-align: top;
+  margin-top: 15px;
 }
 
 .items{
   display: inline-block;
   position: relative;
   width: 60%;
+  vertical-align: top;
+  margin-top: 15px;
 }
 
 table{
@@ -55,7 +61,7 @@ th, td{
   border: 1px black solid;
 }
 
-tr:nth-child(even){
+tbody tr:nth-child(odd){
   background-color: lightgray;
 }
 
