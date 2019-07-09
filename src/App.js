@@ -14,6 +14,7 @@ class App extends React.Component {
       },
       detail: {
         isLoading: false,
+        sn: "",
         data: [],
         error: null,
       }
@@ -23,7 +24,7 @@ class App extends React.Component {
     this.setState({
       category: {
         isLoading: true,
-        data: [],
+        data: this.state.category.data,
         error: null
       }
     });
@@ -51,7 +52,8 @@ class App extends React.Component {
     this.setState({
       detail: {
         isLoading: true,
-        data: [],
+        sn: sn,
+        data: this.state.detail.data,
         error: null,
       }
     });
@@ -62,6 +64,7 @@ class App extends React.Component {
           {
             detail: {
               isLoading: false,
+              sn: this.state.detail.sn,
               data: res.data,
               error: null
             }
@@ -73,6 +76,8 @@ class App extends React.Component {
           {
             detail: {
               isLoading: false,
+              sn: this.state.detail.sn,
+              data: this.state.detail.data,
               error: error
             }
           }
@@ -82,10 +87,11 @@ class App extends React.Component {
 
   render() {
     const { category: { data, isLoading }, detail } = this.state;
-    console.log(detail);
     return (
       <div className="App">
-        <h1>Menu Categories</h1>
+        <div className="head">
+          <h1>Menu Categories</h1>
+        </div>
         <div className="category">
           {isLoading ? <h2>Loading...</h2> : <ul>
             {data.map((c, i) => {
@@ -93,7 +99,8 @@ class App extends React.Component {
             })}
           </ul>}
         </div>
-        <div className="items">
+        {detail.data? <div className="items">
+          <h2>{`Items in Category: (${detail.sn})`}</h2>
           <table className="table">
             <thead>
               <tr>
@@ -112,7 +119,7 @@ class App extends React.Component {
               })}
             </tbody>
           </table>
-        </div>
+        </div>: null}
       </div>
     );
   }
