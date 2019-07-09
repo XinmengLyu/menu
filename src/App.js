@@ -99,7 +99,7 @@ class App extends React.Component {
             })}
           </ul>}
         </div>
-        {detail.data? <div className="items">
+        {detail.data.length? <div className="items">
           <h2>{`Items in Category: (${detail.sn})`}</h2>
           <table className="table">
             <thead>

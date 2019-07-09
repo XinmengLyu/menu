@@ -58,3 +58,9 @@ th, td{
 tr:nth-child(even){
   background-color: lightgray;
 }
+
+li:hover{
+  cursor: pointer;
+  list-style-type: none;
+  border: 1px black solid;
+}
