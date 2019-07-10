@@ -52,7 +52,7 @@ class App extends React.Component {
     this.setState({
       detail: {
         isLoading: true,
-        sn: sn,
+        sn: this.state.detail.sn,
         data: this.state.detail.data,
         error: null,
       }
@@ -64,7 +64,7 @@ class App extends React.Component {
           {
             detail: {
               isLoading: false,
-              sn: this.state.detail.sn,
+              sn: sn,
               data: res.data,
               error: null
             }
@@ -91,15 +91,15 @@ class App extends React.Component {
       <div className="App">
         <div className="head">
           <h1>Menu Categories</h1>
+          <div className="category">
+            {isLoading ? <h2>Loading...</h2> : <ul>
+              {data.map((c, i) => {
+                return <li key={i} onClick={() => this.handleClick(c.short_name)}>{`${c.name} - (${c.short_name})`}</li>
+              })}
+            </ul>}
+          </div>
         </div>
-        <div className="category">
-          {isLoading ? <h2>Loading...</h2> : <ul>
-            {data.map((c, i) => {
-              return <li key={i} onClick={() => this.handleClick(c.short_name)}>{`${c.name} - (${c.short_name})`}</li>
-            })}
-          </ul>}
-        </div>
-        {detail.data.length? <div className="items">
+        {detail.data.length ? <div className="items">
           <h2>{`Items in Category: (${detail.sn})`}</h2>
           <table className="table">
             <thead>
@@ -119,7 +119,7 @@ class App extends React.Component {
               })}
             </tbody>
           </table>
-        </div>: null}
+        </div> : null}
       </div>
     );
   }
